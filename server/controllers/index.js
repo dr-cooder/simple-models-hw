@@ -264,7 +264,11 @@ const setNameDog = async (req, res) => {
     return res.status(500).json({ error: 'failed to create dog' });
   }
 
-  return res.json(newDog);
+  return res.json({
+    name: newDog.name,
+    breed: newDog.breed,
+    age: newDog.age,
+  });
 };
 
 const increaseAgeDog = async (req, res) => {
@@ -288,7 +292,11 @@ const increaseAgeDog = async (req, res) => {
 
   try {
     await doc.save();
-    return res.json(doc);
+    return res.json({
+      name: doc.name,
+      breed: doc.breed,
+      age: doc.age,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Something went wrong' });
